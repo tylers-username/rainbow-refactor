@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
 # Cleanup
-rm -rf env
+poetry env remove python
+rm -rf env/
 rm .env

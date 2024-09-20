@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
 
-source env/bin/activate
-gunicorn main:app
+poetry run gunicorn main:app
