@@ -1,3 +1,86 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+:root {
+    --upsun-colors-neutral-light-white: #ffffff;
+
+    --upsun-colors-black-900: #181e21;
+    --upsun-colors-black-800: #252d31;
+
+    --upsun-colors-violet-600: #6046ff;
+    --upsun-colors-violet-900: #130e33;
+
+    --upsun-colors-yellow-400: #e6fb66;
+}
+
+@layer base {
+    body {
+        @apply bg-black text-default text-sm font-sans-soft;
+        font-size: 14px;
+        line-height: 24px;
+    }
+    h1 {
+        @apply font-bold;
+    }
+    h2 {
+        @apply text-15 font-bold;
+    }
+    aside {
+        @apply w-1/4 border-[1px] bg-upsun-black-900 border-t-0 border-upsun-violet-600;
+    }
+
+    aside > section {
+        @apply border-b-[1px] border-upsun-violet-600 p-6 pl-4 pr-4;
+    }
+
+    code {
+        @apply p-0 font-mono inline-flex justify-center items-center rounded-md bg-black text-xs text-upsun-yellow-400 leading-5;
+    }
+
+    .TooltipContent {
+        @apply p-2 bg-[#302F45] rounded-md font-sans-soft;
+        box-shadow: 0px 1px 4px 0px rgba(26, 25, 43, 0.4);
+    }
+
+    .TooltipArrow {
+        @apply fill-[#302F45];
+    }
+
+    .is-disabled {
+        @apply select-none pointer-events-none opacity-25;
+    }
+
+    .code-block > span > code {
+        @apply block !font-mono !text-xs w-full text-left;
+    }
+
+    a {
+        @apply text-upsun-yellow-400 underline;
+    }
+
+    .bottom-right-cut-corner {
+        /**
+                1. Create the bottom-right corner:
+                  - We are using clip-paths from-top: 81% and from-left: 84% to chop off the bottom right corner.
+                2. To apply a border to the cut corner, create a pseudo element that is the same size and position as this element.
+                  - width & height 100%; position:absolute
+                3. In the pseudo element, use the same percentages (81% and 84%) to chop of the inverse corner (top right)
+                  - bottom-right corner: polygon(0 0, 100% 0, 100% 81%, 84% 100%, 0 100%, 0% 50%);
+                  - pseudo class top-left corner: polygon(0 0, 100% 0, 100% 81%, 84% 100%, 0 100%, 0% 50%);
+             */
+        clip-path: polygon(0 0, 100% 0, 100% 81%, 84% 100%, 0 100%, 0% 50%);
+        @apply relative;
+    }
+
+    .bottom-right-cut-corner:before {
+        content: "";
+        @apply bg-upsun-violet-600 w-full h-full absolute bottom-0 right-0;
+        clip-path: polygon(100% 81%, 84% 100%, 100% 100%);
+        /*position:absolute;*/
+        /*z-index: 5;*/
+        /*bottom: -1px;*/
+        /*right: -1px;*/
+        /*content:'';*/
+        /*@apply border-b-[40px] border-l-[50px] border-b-upsun-violet-600 border-l-transparent;*/
+    }
+}
