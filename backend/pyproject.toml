@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "upsun flask demo"
+version = "2.0.0"
+description = "Deploy this as an Upsun project to start exploring some of the key features of Upsun"
+authors = ["Tyler Mills <tyler.mills@platform.sh>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
