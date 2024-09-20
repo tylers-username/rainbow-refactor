@@ -129,14 +129,14 @@ def main():
     download_tailwind(filename, version, destination, force=force)
 
 
-def run_tailwind(*args):
+def run_tailwind():
     """
     Runs the Tailwind CSS binary from the current working directory if it exists.
     If the binary is not found, advises the user to download it.
-
-    Args:
-        *args: Arguments to pass to the Tailwind CSS binary.
     """
+    # Capture command-line arguments excluding the script name
+    args = sys.argv[1:]
+
     # Determine the binary name based on the operating system
     binary = "tailwindcss.exe" if os.name == "nt" else "tailwindcss"
     binary_path = os.path.join(os.getcwd(), binary)
