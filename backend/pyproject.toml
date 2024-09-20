@@ -12,6 +12,8 @@ app_lint = "upsun_demo_app.setup.lint:main"
 app_prettier = "upsun_demo_app.setup.prettier:main"
 app_test = "upsun_demo_app.setup.test:main"
 app_build = "upsun_demo_app.setup.build:main"
+dev-serve = "upsun_demo_app.main:dev_server"
+dev-css-watch = "upsun_demo_app.setup.dev:cssWatch"
 app = "upsun_demo_app.setup.start:main"
 
 [tool.poetry.dependencies]
@@ -63,6 +65,7 @@ pip-requirements-parser = "32.0.1"
 pip-audit = "2.7.2"
 pylint = "3.0.3"
 black = "24.4.0"
+livereload = "^2.7.0"
 
 [build-system]
 requires = ["poetry-core"]
