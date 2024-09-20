@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tailwind"
-version = "0.3.2"
+version = "0.4.0"
 description = ""
 authors = ["Tyler Mills <tyler.mills@platform.sh>"]
 readme = "README.md"
@@ -10,7 +10,7 @@ python = "^3.10"
 
 [tool.poetry.scripts]
 download-tailwind = "tailwind.cli:main"
-tailwind = "tailwind.cli:run_tailwind"
+tailwindcss = "tailwind.cli:run_tailwind"
 
 [build-system]
 requires = ["poetry-core"]
