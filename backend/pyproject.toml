@@ -12,7 +12,7 @@ app_lint = "upsun_demo_app.setup.lint:main"
 app_prettier = "upsun_demo_app.setup.prettier:main"
 app_test = "upsun_demo_app.setup.test:main"
 app_build = "upsun_demo_app.setup.build:main"
-dev-serve = "upsun_demo_app.main:dev_server"
+dev-serve = "upsun_demo_app.main:main"
 dev-css-watch = "upsun_demo_app.setup.dev:cssWatch"
 app = "upsun_demo_app.setup.start:main"
 
