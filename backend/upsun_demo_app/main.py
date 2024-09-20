@@ -10,7 +10,7 @@ import os
 from flask import Flask
 from flask_cors import CORS
 from dotenv import load_dotenv
-from app import routes
+from upsun_demo_app import routes
 
 # from flask_session import Session
 

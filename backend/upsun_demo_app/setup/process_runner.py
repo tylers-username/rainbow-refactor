@@ -22,7 +22,7 @@ def run(command, message=None, exit_on_fail=True):
 
     try:
         result = subprocess.run(command, shell=True, check=False)
-    except: # pylint: disable=bare-except
+    except:  # pylint: disable=bare-except
         sys.exit(1)
 
     if result.returncode != 0:

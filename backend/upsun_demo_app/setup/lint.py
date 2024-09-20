@@ -7,7 +7,7 @@ def main():
     """Installs dependencies then runs pylint"""
     commands = [
         {"message": "Installing dependencies", "command": "poetry install"},
-        {"message": "Linting code", "command": "poetry run pylint main.py app/**/*.py"},
+        {"message": "Linting code", "command": "poetry run pylint **/*.py"},
     ]
 
     run_multiple(commands)
