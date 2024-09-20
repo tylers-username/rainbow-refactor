@@ -5,7 +5,7 @@ This module sets defines the routes for your Flask application
 import os
 import base64
 import json
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, render_template
 
 bp = Blueprint("routes", __name__)
 
@@ -13,6 +13,11 @@ SERVICE_RELATIONSHIP = "redis_session"
 
 API_PREFIX = "/api/v1"
 
+@bp.route('/')
+def index():
+    # Example data to pass to the template
+    user = {"username": "John Doe"}
+    return render_template('index.html', user=user)
 
 @bp.route(f"{API_PREFIX}/environment")
 def environment():

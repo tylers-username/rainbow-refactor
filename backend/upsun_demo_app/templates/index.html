@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Home - My Flask App{% endblock %}
+
+{% block content %}
+<div class="alert alert-success" role="alert">
+  Hello, {{ user.username }}! Welcome to your Flask application.
+</div>
+{% endblock %}
