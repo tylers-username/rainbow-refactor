@@ -1,10 +1,21 @@
 [tool.poetry]
-name = "upsun flask demo"
+name = "upsun-flask-demo"
 version = "2.0.0"
 description = "Deploy this as an Upsun project to start exploring some of the key features of Upsun"
 authors = ["Tyler Mills <tyler.mills@platform.sh>"]
 license = "MIT"
 package-mode = false
+packages = [
+    { include = "app" },
+]
+
+[tool.poetry.scripts]
+app_clean = "app.setup.clean:main"
+app_lint = "app.setup.lint:main"
+app_prettier = "app.setup.prettier:main"
+app_test = "app.setup.test:main"
+app_build = "app.setup.build:main"
+app = "app.setup.start:main"
 
 [tool.poetry.dependencies]
 python = "^3.10"
