@@ -13,11 +13,13 @@ SERVICE_RELATIONSHIP = "redis_session"
 
 API_PREFIX = "/api/v1"
 
-@bp.route('/')
+
+@bp.route("/")
 def index():
-    # Example data to pass to the template
+    """Default route of app"""
     user = {"username": "John Doe"}
-    return render_template('index.html', user=user)
+    return render_template("index.html", user=user)
+
 
 @bp.route(f"{API_PREFIX}/environment")
 def environment():

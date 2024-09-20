@@ -6,3 +6,7 @@ from .process_runner import run
 def main():
     """Copies .env.sample to .env."""
     run("cp .env.sample .env", "Copying .env.sample to .env")
+    run(
+        "poetry run download-tailwind --version 3.4.12",
+        "Downloading tailwind if needed",
+    )
