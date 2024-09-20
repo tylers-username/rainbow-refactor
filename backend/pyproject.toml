@@ -15,6 +15,7 @@ app_build = "upsun_demo_app.setup.build:main"
 app = "upsun_demo_app.setup.start:main"
 
 [tool.poetry.dependencies]
+tailwind = { path = "./packages/tailwind" }
 python = "^3.10"
 async-timeout = "4.0.3"
 blinker = "1.7.0"

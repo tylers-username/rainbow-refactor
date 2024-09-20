@@ -1,0 +1,1 @@
+Avoid heavy NPM packages with this package. This package will download the appropriate Tailwind CLI for the OS your app is running.

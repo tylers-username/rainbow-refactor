@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "tailwind"
+version = "0.1.2"
+description = ""
+authors = ["Tyler Mills <tyler.mills@platform.sh>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.scripts]
+download-tailwind = "tailwind.cli:main"
+tailwind = "tailwind.cli:run_tailwind"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

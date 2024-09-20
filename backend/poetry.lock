@@ -972,6 +972,19 @@ files = [
 ]
 
 [[package]]
+name = "tailwind"
+version = "0.1.2"
+description = ""
+optional = false
+python-versions = "^3.10"
+files = []
+develop = false
+
+[package.source]
+type = "directory"
+url = "packages/tailwind"
+
+[[package]]
 name = "toml"
 version = "0.10.2"
 description = "Python Library for Tom's Obvious, Minimal Language"
@@ -1063,4 +1076,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "2ba70acc3ec7e36aa3af314613da9b009e6f9a611590636857304f7d50950164"
+content-hash = "a8d77ebc43b45ff06e055f701b2e20a3a18a2c78c10d34db7ba0cd2d508db870"
