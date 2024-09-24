@@ -7,11 +7,13 @@ registers the routes, and runs the app with the specified port and debug setting
 """
 
 import os
-from flask import Flask, render_template
+from flask import Flask, url_for
 from flask_cors import CORS
 from dotenv import load_dotenv
 from upsun_demo_app import routes
 from livereload import Server
+
+
 # from flask_session import Session
 
 def create_app():
@@ -55,7 +57,22 @@ def create_app():
     def inject_debug():
         return {'debug': flask_app.debug}
 
+    def versioned_url_for(endpoint, **values):
+        if endpoint == 'static':
+            filename = values.get('filename', None)
+            if filename:
+                file_path = os.path.join(flask_app.root_path, 'static', filename)
+                if os.path.isfile(file_path):
+                    # Use the file's last modification time as the version
+                    values['v'] = int(os.stat(file_path).st_mtime)
+        return url_for(endpoint, **values)
+
+    # Register the helper function globally
+    flask_app.jinja_env.globals['versioned_url_for'] = versioned_url_for
+
+
     return flask_app
+
 
 def dev_server(app, port):
     """
@@ -78,6 +95,7 @@ def dev_server(app, port):
     print(f"Starting development server with LiveReload on port {port}")
     server.serve(host='0.0.0.0', port=port, debug=True, open_url_delay=1)
 
+
 def run_production(app, port):
     """
     Placeholder for running the production server.
@@ -92,6 +110,7 @@ def run_production(app, port):
     print(f"Example Gunicorn command: gunicorn -w 4 -b 0.0.0.0:{port} upsun_demo_app.main:app")
     # Example:
     # gunicorn -w 4 -b 0.0.0.0:8000 upsun_demo_app.main:app
+
 
 def main():
     """
@@ -120,6 +139,8 @@ def main():
     else:
         # Start production server (suggest using Gunicorn)
         run_production(app, web_port)
+
+
 
 # Ensure the script runs only when executed directly
 if __name__ == "__main__":
