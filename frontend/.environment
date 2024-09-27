@@ -1,3 +1,0 @@
-# ENVIRONMENT=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select (.value.id == "frontend") | .key')
-# export REACT_APP_BACKEND_URL=${ENVIRONMENT%/}
-# export REACT_APP_PROJECT_ID=$PLATFORM_PROJECT
