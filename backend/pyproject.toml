@@ -41,5 +41,6 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.deptry.per_rule_ignores]
-DEP002 = ["tailwind"]
+DEP002 = ["tailwind", "gunicorn"]
+DEP004 = ["livereload"]
 
