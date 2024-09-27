@@ -11,7 +11,6 @@ from flask import Flask, url_for
 from flask_cors import CORS
 from dotenv import load_dotenv
 from upsun_demo_app import routes
-from livereload import Server
 
 
 # from flask_session import Session
@@ -82,6 +81,8 @@ def dev_server(app, port):
         app (Flask): The Flask application instance.
         port (int): The port number to run the server on.
     """
+    from livereload import Server
+
     server = Server(app.wsgi_app)
 
     # Watch templates and static files
