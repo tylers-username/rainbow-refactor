@@ -2,67 +2,29 @@
 # Upsun demo project configuration
 #######################################################################################################################
 # Application configuration.
-applications:    
-    # App 1: Frontend (JS)
-    frontend:
-
-        source:
-            root: "frontend"
-
-        type: "nodejs:18"
-
-        variables:
-            env:
-                REACT_APP_BACKEND_URL: "/"
-                npm_config_loglevel: silent
-                NPM_CONFIG_UPDATE_NOTIFIER: false
-
-        hooks:
-            build: |
-                set -eux
-                npm install
-                export REACT_APP_PROJECT_ID=$PLATFORM_PROJECT
-                npm run build
-
-        relationships:
-            api: 
-                service: "backend"
-                endpoint: "http"
-
-        web:
-            locations:
-                /:
-                    root: build
-                    index:
-                        - index.html
-                    expires: 2m
-                    scripts: false
-                    allow: true
-                    rules:
-                        static\/*:
-                            expires: 365d
-
-    # App 2: Backend (Python)
-    backend:
-
-        source:
-            root: "backend"
-
+applications:
+    # Python App
+    upsun-demo:
         type: "python:3.12"
 
         hooks:
             build: |
                 set -eux
-                pip install -r requirements.txt --disable-pip-version-check
+                poetry install
                 
         web:
             commands:
-                start: "gunicorn main:app"
+                start: "poetry run app"
             upstream:
                 socket_family: tcp
             locations:
                 /:
                     passthru: true
+
+        relationships:
+          api:
+            service: "backend"
+            endpoint: "http"
 
 # #add_service_start
 # ######################################################################################################################
@@ -82,17 +44,13 @@ applications:
 # Routes configuration.
 routes:
     "https://{default}/":
-        id: frontend
+        id: default-route
         type: upstream
         primary: true
-        upstream: "frontend:http"
+        upstream: "upsun-demo:http"
 
     "https://www.{default}":
-        id: frontend-redirect
+        id: www-redirect
         type: redirect
         to: "https://{default}/"
 
-    "https://{default}/api/":
-        id: backend
-        type: upstream
-        upstream: "backend:http"

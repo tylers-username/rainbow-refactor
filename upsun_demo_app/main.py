@@ -113,6 +113,9 @@ def run_production(app, port):
     # gunicorn -w 4 -b 0.0.0.0:8000 upsun_demo_app.main:app
 
 
+# Create the Flask app
+app = create_app()
+
 def main():
     """
     Entry point for running the Flask application via Poetry script.
@@ -123,16 +126,13 @@ def main():
     load_dotenv()
 
     # Determine environment and port
-    flask_env = os.getenv("FLASK_ENV", "local")
+    flask_env = os.getenv("FLASK_ENV", "production")
     enable_debug = flask_env != "production"
     try:
         web_port = int(os.getenv("PORT", 8000))
     except ValueError:
         print("Invalid PORT environment variable. Using default port 8000.")
         web_port = 8000
-
-    # Create the Flask app
-    app = create_app()
 
     if enable_debug:
         # Start development server with Livereload
