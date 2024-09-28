@@ -20,7 +20,7 @@ applications:
             build: |
                 set -eux
                 poetry install --without dev
-                
+                poetry run tailwindcss -i ./upsun_demo_app/static/css/tailwind.css -o ./upsun_demo_app/static/css/main.css
         web:
             commands:
                 start: "poetry run app-serve"
