@@ -23,7 +23,7 @@ applications:
                 
         web:
             commands:
-                start: "poetry run app"
+                start: "poetry run app-serve"
 
             locations:
                 /:
