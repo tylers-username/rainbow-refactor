@@ -19,7 +19,7 @@ applications:
         hooks:
             build: |
                 set -eux
-                poetry install
+                poetry install --without dev
                 
         web:
             commands:
