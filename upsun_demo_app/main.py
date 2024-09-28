@@ -30,9 +30,9 @@ def create_app():
     flask_app = Flask(__name__)
 
     # Configure Environment
-    flask_env = os.getenv("FLASK_ENV", "local")
+    flask_env = os.getenv("FLASK_ENV", "production")
     flask_app.config['ENV'] = flask_env
-    flask_app.config['DEBUG'] = flask_env == "local"
+    flask_app.config['DEBUG'] = flask_env != "production"
 
     # Apply CORS
     CORS(flask_app)
@@ -107,8 +107,9 @@ def run_production(app, port):
         app (Flask): The Flask application instance.
         port (int): The port number to run the server on.
     """
-    print("Running in production mode. Use Gunicorn to serve the app.")
-    print(f"Example Gunicorn command: gunicorn -w 4 -b 0.0.0.0:{port} upsun_demo_app.main:app")
+    print("Running in production mode. Set FLASK_ENV=local or use Gunicorn to serve the production app.")
+    print(f"Example Gunicorn command: \n\tpoetry run gunicorn -w 4 -b 0.0.0.0:{port} upsun_demo_app.main:app")
+    print(f"\tOr poetry run app-serve")
     # Example:
     # gunicorn -w 4 -b 0.0.0.0:8000 upsun_demo_app.main:app
 
