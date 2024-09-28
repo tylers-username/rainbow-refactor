@@ -21,11 +21,6 @@ applications:
                 /:
                     passthru: true
 
-        relationships:
-          api:
-            service: "backend"
-            endpoint: "http"
-
 # #add_service_start
 # ######################################################################################################################
 # # Step 3: Add a service. Uncomment this section.
