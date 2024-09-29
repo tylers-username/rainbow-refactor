@@ -1,0 +1,14 @@
+{% macro feature_step(title, image_component_path, content_component_path, current_step=false, completed=false, disabled=false) %}
+    <feature-step title="{{ title }}"
+                  {% if current_step %}current-step{% endif %}
+                  {% if completed %}completed{% endif %}
+                  {% if disabled %}disabled{% endif %}
+                  class="group relative">
+        <feature-image>
+            {% include image_component_path %}
+        </feature-image>
+        <feature-content>
+            {% include content_component_path %}
+        </feature-content>
+    </feature-step>
+{% endmacro %}

@@ -1,0 +1,64 @@
+<div class=""><p class="mb-2">Awesome! Your changes are live in staging.</p>
+    <p class="mb-2">Use this or other preview environments to stage any future updates.</p><h4
+            class="mt-5 text-lg font-semibold">Next Step</h4>
+    <ol class="list-decimal list-outside ml-4 mt-2">
+        <li>
+            <p class="mb-2"><span>Deploy staging changes to production</span>
+                <button class="pl-1 inline-block w-full" data-state="closed">
+                                    <span class="mb-2 mt-2 code-block group/copy-box"><code
+                                            class="px-2 py-1.5 w-full flex flex-row"><span
+                                            class="w-full text-left whitespace-nowrap overflow-auto">upsun merge staging</span><span
+                                            class="text-white flex flex-row items-center"><span
+                                            class="h-full transition-opacity duration-300 opacity-0">Copied!</span><svg
+                                            fill="currentColor" width="24" height="24" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-5 transition-opacity duration-300 ease-in opacity-0 group-hover/copy-box:opacity-100"><path
+                                            fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M14.5 5C15 5 15.5 4.5 15.5 4C15.5 3.5 15 3 14.5 3H5.5C4.4 3 3.5 3.9 3.5 5V14C3.5 14.5 4 15 4.5 15C5 15 5.5 14.5 5.5 14V5H14.5ZM9.5 21H18.5C19.6 21 20.5 20.1 20.5 19V9C20.5 7.9 19.6 7 18.5 7H9.5C8.4 7 7.5 7.9 7.5 9V19C7.5 20.1 8.4 21 9.5 21ZM9.5 19V9H18.5V19H9.5Z"></path></svg></span></code>
+                                    </span>
+                </button>
+            </p>
+        </li>
+        <li>
+            <p class="mb-2 mt-2"><span>Now, use <code
+                    class="px-1">resources:set</code> with<code
+                    class="px-1">--count backend:2</code> to horizontally scale the backend app and <code
+                    class="px-1">--size redis_service:0.5</code> to vertically scale the <code
+                    class="px-1">redis_service</code> service.</span>
+                <button class="pl-1 inline-block w-full" data-state="closed">
+                                    <span class="mb-2 mt-2 code-block group/copy-box"><code
+                                            class="px-2 py-1.5 w-full flex flex-row"><span
+                                            class="w-full text-left whitespace-pre-wrap">upsun resources:set \
+	--count backend:2 \
+	--size redis_service:0.5 \
+	--disk backend:0,frontend:0 \
+	-e main</span><span class="text-white flex flex-row items-center"><span
+                                            class="h-full transition-opacity duration-300 opacity-0">Copied!</span><svg
+                                            fill="currentColor" width="24" height="24" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-5 transition-opacity duration-300 ease-in opacity-0 group-hover/copy-box:opacity-100"><path
+                                            fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M14.5 5C15 5 15.5 4.5 15.5 4C15.5 3.5 15 3 14.5 3H5.5C4.4 3 3.5 3.9 3.5 5V14C3.5 14.5 4 15 4.5 15C5 15 5.5 14.5 5.5 14V5H14.5ZM9.5 21H18.5C19.6 21 20.5 20.1 20.5 19V9C20.5 7.9 19.6 7 18.5 7H9.5C8.4 7 7.5 7.9 7.5 9V19C7.5 20.1 8.4 21 9.5 21ZM9.5 19V9H18.5V19H9.5Z"></path></svg></span></code>
+                                    </span>
+                </button>
+            </p>
+        </li>
+        <li>
+            <p class="mb-2 mt-2"><span>Open production frontend in your browser</span>
+                <button class="pl-1 inline-block w-full" data-state="closed">
+                                    <span class="mb-2 mt-2 code-block group/copy-box"><code
+                                            class="px-2 py-1.5 w-full flex flex-row"><span
+                                            class="w-full text-left whitespace-nowrap overflow-auto">upsun url --primary -e main</span><span
+                                            class="text-white flex flex-row items-center"><span
+                                            class="h-full transition-opacity duration-300 opacity-0">Copied!</span><svg
+                                            fill="currentColor" width="24" height="24" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-5 transition-opacity duration-300 ease-in opacity-0 group-hover/copy-box:opacity-100"><path
+                                            fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M14.5 5C15 5 15.5 4.5 15.5 4C15.5 3.5 15 3 14.5 3H5.5C4.4 3 3.5 3.9 3.5 5V14C3.5 14.5 4 15 4.5 15C5 15 5.5 14.5 5.5 14V5H14.5ZM9.5 21H18.5C19.6 21 20.5 20.1 20.5 19V9C20.5 7.9 19.6 7 18.5 7H9.5C8.4 7 7.5 7.9 7.5 9V19C7.5 20.1 8.4 21 9.5 21ZM9.5 19V9H18.5V19H9.5Z"></path></svg></span></code>
+                                    </span>
+                </button>
+            </p>
+        </li>
+    </ol>
+</div>
