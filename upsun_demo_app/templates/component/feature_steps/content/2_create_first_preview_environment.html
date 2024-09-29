@@ -1,14 +1,18 @@
 {% import 'component/feature_steps/macros.html' as feature_step_macros %}
 
-<p class="mb-2">With Upsun, you can clone any environment to
-    get a
-    byte-for-byte copy to use for staging, features, and bugfixes.</p>
-<p class="mb-2">Before you make your first revision, let's create a new preview
-    environment called
-    <strong>Staging</strong>.</p><h4 class="mt-5 text-lg font-semibold">Next
-    Step</h4>
+<p class="mb-2">
+    With Upsun, you can clone any environment to get a byte-for-byte copy to use for staging, features, and bugfixes.
+</p>
+<p class="mb-2">
+    Before you make your first revision, let's create a new preview environment called <strong>Staging</strong>.
+</p>
+
+<h4 class="mt-5 text-lg font-semibold">
+    Next Step
+</h4>
+
 <ol class="list-decimal list-outside ml-4 mt-2">
-    <li class="">
+    <li>
         <p class="mb-2 mt-2"><span>Create environment</span>
             {{ feature_step_macros.copy_button('upsun branch staging --type staging') }}
         </p>
