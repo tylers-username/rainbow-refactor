@@ -25,7 +25,7 @@
             completed=(upsun_info.has_redis_service == True),
             disabled=(upsun_info.environment_type != 'production' and upsun_info.has_redis_service == False) == False,
             image_component_path='component/imagery/redis.svg',
-            content_component_path='component/feature_steps/content/2_create_first_preview_environment.html'
+            content_component_path='component/feature_steps/content/3_add_redis_to_staging.html'
         ) }}
 
         {{ feature_step_macros.feature_step(
