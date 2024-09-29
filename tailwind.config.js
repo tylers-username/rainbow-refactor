@@ -16,6 +16,7 @@ module.exports = {
       colors: {
         "upsun-black-900": "var(--upsun-colors-black-900)",
         "upsun-black-800": "var(--upsun-colors-black-800)",
+        "upsun-violet-300": "var(--upsun-colors-violet-300)",
         "upsun-violet-600": "var(--upsun-colors-violet-600)",
         "upsun-violet-900": "var(--upsun-colors-violet-900)",
         "upsun-yellow-400": "var(--upsun-colors-yellow-400)",

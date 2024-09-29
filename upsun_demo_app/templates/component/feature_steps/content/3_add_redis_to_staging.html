@@ -1,78 +1,68 @@
 {% import 'component/feature_steps/macros.html' as feature_step_macros %}
 
-<p class="mb-2">Great! Your preview environment <code class="px-1">staging</code> is live and mirrors your
-    production setup.</p>
-<p class="mb-2">We'll use this preview environment as a sandbox to stage the addition of a Redis service. Once
-    happy, we'll commit the changes using <code class="px-1">git</code> and then merge it into production.</p><h4
-        class="mt-5 text-lg font-semibold">Next Step</h4>
+<p class="mb-2">
+    Great! Your preview environment <code class="px-1">staging</code> is live and mirrors your production setup.
+</p>
+
+<p class="mb-2">
+    We'll use this preview environment as a sandbox to stage the addition of a Redis service. Once happy, we'll commit
+    the changes using <code class="px-1">git</code> and then merge it into production.
+</p>
+
+<h4 class="mt-5 text-lg font-semibold">
+    Next Step
+</h4>
+
 <ol class="list-decimal list-outside ml-4 mt-2">
-    <li class="">
-        <p class="mb-2">Create the relationship. Open
-            <button class="inline-block" data-state="closed"><code class="px-2">.upsun/config.yaml</code></button>
-            and uncomment the following lines
-        </p>
-        <p class="mb-2 code-block"><span
-                style="font-size: inherit; font-family: inherit; background: rgb(40, 42, 54); color: rgb(248, 248, 242); border-radius: 3px; display: flex; line-height: 1.42857; overflow-x: auto; white-space: pre;"><code
-                style="font-size: inherit; font-family: inherit; line-height: 1.66667; padding: 8px; white-space: pre;"><span
-                class="linenumber react-syntax-highlighter-line-number"
-                style="display: inline-block; min-width: 3.25em; padding-right: 1em; text-align: right; user-select: none; color: rgb(255, 255, 255); font-family: inherit; font-style: italic;">67</span><span
-                class="token token" style="color: rgb(255, 255, 255); font-family: inherit; font-style: italic;">###############################################################</span><span>
-</span><span class="linenumber react-syntax-highlighter-line-number"
-             style="display: inline-block; min-width: 3.25em; padding-right: 1em; text-align: right; user-select: none; color: rgb(255, 255, 255); font-family: inherit; font-style: italic;">68</span><span></span><span
-                class="token token" style="color: rgb(255, 255, 255); font-family: inherit; font-style: italic;"># Step 3: Add a service. Uncomment this section.</span><span>
-</span><span class="linenumber react-syntax-highlighter-line-number"
-             style="display: inline-block; min-width: 3.25em; padding-right: 1em; text-align: right; user-select: none; color: rgb(255, 255, 255); font-family: inherit; font-style: italic;">69</span><span></span><span
-                class="token token" style="color: rgb(255, 255, 255); font-family: inherit; font-style: italic;">###############################################################</span><span>
-</span><span class="linenumber react-syntax-highlighter-line-number"
-             style="display: inline-block; min-width: 3.25em; padding-right: 1em; text-align: right; user-select: none; color: rgb(255, 255, 255); font-family: inherit; font-style: italic;">70</span><span>        </span><span
-                class="token token atrule"
-                style="color: rgb(138, 226, 52); font-weight: bolder;">relationships</span><span
-                class="token token punctuation">:</span><span>
-</span><span class="linenumber react-syntax-highlighter-line-number"
-             style="display: inline-block; min-width: 3.25em; padding-right: 1em; text-align: right; user-select: none; color: rgb(255, 255, 255); font-family: inherit; font-style: italic;">71</span><span>            </span><span
-                class="token token atrule"
-                style="color: rgb(138, 226, 52); font-weight: bolder;">redis_session</span><span
-                class="token token punctuation">:</span><span>
-</span><span class="linenumber react-syntax-highlighter-line-number"
-             style="display: inline-block; min-width: 3.25em; padding-right: 1em; text-align: right; user-select: none; color: rgb(255, 255, 255); font-family: inherit; font-style: italic;">72</span><span>                </span><span
-                class="token token atrule"
-                style="color: rgb(138, 226, 52); font-weight: bolder;">service</span><span
-                class="token token punctuation">:</span><span> </span><span class="token token"
-                                                                            style="color: rgb(52, 226, 226);">"redis_service"</span><span>
-</span><span class="linenumber react-syntax-highlighter-line-number"
-             style="display: inline-block; min-width: 3.25em; padding-right: 1em; text-align: right; user-select: none; color: rgb(255, 255, 255); font-family: inherit; font-style: italic;">73</span><span>                </span><span
-                class="token token atrule"
-                style="color: rgb(138, 226, 52); font-weight: bolder;">endpoint</span><span
-                class="token token punctuation">:</span><span> </span><span class="token token"
-                                                                            style="color: rgb(52, 226, 226);">"redis"</span><span>
-</span><span class="linenumber react-syntax-highlighter-line-number"
-             style="display: inline-block; min-width: 3.25em; padding-right: 1em; text-align: right; user-select: none; color: rgb(255, 255, 255); font-family: inherit; font-style: italic;">74</span><span></span><span
-                class="token token atrule"
-                style="color: rgb(138, 226, 52); font-weight: bolder;">services</span><span
-                class="token token punctuation">:</span><span>
-</span><span class="linenumber react-syntax-highlighter-line-number"
-             style="display: inline-block; min-width: 3.25em; padding-right: 1em; text-align: right; user-select: none; color: rgb(255, 255, 255); font-family: inherit; font-style: italic;">75</span><span>    </span><span
-                class="token token atrule"
-                style="color: rgb(138, 226, 52); font-weight: bolder;">redis_service</span><span
-                class="token token punctuation">:</span><span>
-</span><span class="linenumber react-syntax-highlighter-line-number"
-             style="display: inline-block; min-width: 3.25em; padding-right: 1em; text-align: right; user-select: none; color: rgb(255, 255, 255); font-family: inherit; font-style: italic;">76</span><span>        </span><span
-                class="token token atrule" style="color: rgb(138, 226, 52); font-weight: bolder;">type</span><span
-                class="token token punctuation">:</span><span> </span><span class="token token"
-                                                                            style="color: rgb(52, 226, 226);">"redis:7.0"</span><span>
-</span><span class="linenumber react-syntax-highlighter-line-number"
-             style="display: inline-block; min-width: 3.25em; padding-right: 1em; text-align: right; user-select: none; color: rgb(255, 255, 255); font-family: inherit; font-style: italic;">77</span><span></span><span
-                class="token token" style="color: rgb(255, 255, 255); font-family: inherit; font-style: italic;">###############################################################</span></code></span>
-        </p></li>
     <li>
-        <p class="mb-2 mt-2"><span>Commit</span>
+        <p class="mb-2">
+            Create the relationship. Open <code class="px-2">.upsun/config.yaml</code> and uncomment the following
+            lines:
+        </p>
+
+        <div class="mb-2 code-block flex bg-upsun-black-900 text-white w-full p-4 font-mono text-md !leading-5">
+            <div id="gutter" class="pr-4 text-gray-400 text-right select-none whitespace-pre w-[2rem] flex flex-col">
+                <span>33.</span>
+                <span>34.</span>
+                <span>35.</span>
+                <span>36.</span>
+                <span>37.</span>
+                <span>38.</span>
+                <span>39.</span>
+                <span>40.</span>
+                <span>41.</span>
+                <span>42.</span>
+                <span>43.</span>
+            </div>
+            <!-- Whitespace, `pre` and wrapping are very important to consider here. Be mindful when updating -->
+            <code class="whitespace-pre block w-full pl-2"><span class="text-white">###############################################################
+# Step 3: Add a service. Uncomment this section.
+###############################################################</span>
+        <span class="text-upsun-yellow-400">relationships:
+            redis_session:
+                service: <span class="text-upsun-violet-300">"redis_service"</span>
+                endpoint: <span class="text-upsun-violet-300">"redis"</span>
+services:
+    redis_service:
+        type: <span class="text-upsun-violet-300">"redis:7.0"</span></span>
+<span class="text-white">###############################################################</span></code>
+        </div>
+    </li>
+    <li>
+        <p class="mb-2 mt-2">
+            <span>Commit</span>
             {{ feature_step_macros.copy_button('git commit -am "Create a Redis service."') }}
         </p>
     </li>
     <li>
-        <p class="mb-2 mt-2"><span>Push</span>
+        <p class="mb-2 mt-2">
+            <span>Push</span>
             {{ feature_step_macros.copy_button('upsun push') }}
         </p>
     </li>
-    <li><p class="mb-2 mt-2"><span>Refresh this page when done.</span></p></li>
+    <li>
+        <p class="mb-2 mt-2">
+            <span>Refresh this page when done.</span>
+        </p>
+    </li>
 </ol>
