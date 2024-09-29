@@ -1,35 +1,90 @@
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#000000">
-  <meta name="description" content="Web site created using create-react-app">
-  <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logo192.ico') }}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
-        rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
-  <title>Upsun Demo Project: Built with Flask</title>
-  <link rel="stylesheet" href="{{ versioned_url_for('static', filename='css/main.css') }}">
+    <meta charset="utf-8">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Web site created using create-react-app">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logo192.ico') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+    <title>Upsun Demo Project: Built with Flask</title>
+    <link rel="stylesheet" href="{{ versioned_url_for('static', filename='css/main.css') }}">
 </head>
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root">
-<!--  {% include 'component/debugger.html' %}-->
-  <div class="max-w-7xl w-fill px-6 2xl:pl-0 m-auto transition duration-500">
-    {% include 'partials/header.html' %}
-    {% include 'partials/main.html' %}
-    {% include 'partials/footer.html' %}
-  </div>
+    <!--  {% include 'component/debugger.html' %}-->
+    <div class="max-w-7xl w-fill px-6 2xl:pl-0 m-auto transition duration-500">
+        {% include 'partials/header.html' %}
+        {% include 'partials/main.html' %}
+        {% include 'partials/footer.html' %}
+    </div>
 </div>
 
 {% if debug %}
-<script src="/livereload.js"></script>
+    <script src="/livereload.js"></script>
 {% endif %}
 
 {% include 'component/template/web-component/feature_step.html' %}
+
+<div class="toast fixed bottom-5 right-5 bg-upsun-violet-900 border-upsun-violet-600 text-white px-4 py-2 rounded-lg shadow-lg transition-opacity duration-300 opacity-0"></div>
+{% block scripts %}
+    <script>
+        function showToast(message) {
+            // Create a toast element
+            const toast = document.querySelector('div.toast');
+            toast.innerText = message;
+
+            // Set a timeout to remove the toast after 3 seconds
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            // Remove the toast after fade out
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 3500);
+        }
+
+        function shareOrCopy() {
+            const url = window.location.href; // Get the current URL
+
+            // Check if the Web Share API is available
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title, // Optional: Title to share
+                    url: url // The current URL to share
+                })
+                    .then(() => {
+                        console.log('Successfully shared');
+                        showToast('Successfully shared!');
+                    })
+                    .catch((error) => {
+                        console.error('Error sharing:', error);
+                        showToast('Error sharing the URL.');
+                    });
+            } else if (navigator.clipboard && navigator.clipboard.writeText) {
+                // Fallback: Copy the URL to clipboard
+                navigator.clipboard.writeText(url)
+                    .then(() => {
+                        console.log('URL copied to clipboard');
+                        showToast('URL copied to clipboard!');
+                    })
+                    .catch((error) => {
+                        console.error('Could not copy URL:', error);
+                        showToast('Failed to copy URL, please try manually.');
+                    });
+            } else {
+                // Fallback for older browsers
+                console.error('Clipboard API is not available.');
+                showToast('Unable to copy ' + url + ' to clipboard.');
+            }
+        }
+    </script>
+{% endblock %}
 </body>
 </html>
