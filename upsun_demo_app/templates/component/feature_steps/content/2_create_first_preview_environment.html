@@ -1,3 +1,5 @@
+{% import 'component/feature_steps/macros.html' as feature_step_macros %}
+
 <p class="mb-2">With Upsun, you can clone any environment to
     get a
     byte-for-byte copy to use for staging, features, and bugfixes.</p>
@@ -8,37 +10,12 @@
 <ol class="list-decimal list-outside ml-4 mt-2">
     <li class="">
         <p class="mb-2 mt-2"><span>Create environment</span>
-            <button class="pl-1 inline-block w-full" data-state="closed">
-                                <span class="mb-2 mt-2 code-block group/copy-box"><code
-                                        class="px-2 py-1.5 w-full flex flex-row"><span
-                                        class="w-full text-left whitespace-nowrap overflow-auto">upsun branch staging --type staging</span><span
-                                        class="text-white flex flex-row items-center"><span
-                                        class="h-full transition-opacity duration-300 opacity-0">Copied!</span><svg
-                                        fill="currentColor" width="24" height="24" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="h-5 transition-opacity duration-300 ease-in opacity-0 group-hover/copy-box:opacity-100"><path
-                                        fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M14.5 5C15 5 15.5 4.5 15.5 4C15.5 3.5 15 3 14.5 3H5.5C4.4 3 3.5 3.9 3.5 5V14C3.5 14.5 4 15 4.5 15C5 15 5.5 14.5 5.5 14V5H14.5ZM9.5 21H18.5C19.6 21 20.5 20.1 20.5 19V9C20.5 7.9 19.6 7 18.5 7H9.5C8.4 7 7.5 7.9 7.5 9V19C7.5 20.1 8.4 21 9.5 21ZM9.5 19V9H18.5V19H9.5Z"></path></svg></span></code>
-                                </span>
-            </button>
+            {{ feature_step_macros.copy_button('upsun branch staging --type staging') }}
         </p>
     </li>
     <li>
         <p class="mb-2 mt-2"><span>Once deployed, open environment in browser</span>
-            <button class="pl-1 inline-block w-full" data-state="closed">
-
-                                <span class="mb-2 mt-2 code-block group/copy-box"><code
-                                        class="px-2 py-1.5 w-full flex flex-row"><span
-                                        class="w-full text-left whitespace-nowrap overflow-auto">upsun url --primary</span><span
-                                        class="text-white flex flex-row items-center"><span
-                                        class="h-full transition-opacity duration-300 opacity-0">Copied!</span><svg
-                                        fill="currentColor" width="24" height="24" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="h-5 transition-opacity duration-300 ease-in opacity-0 group-hover/copy-box:opacity-100"><path
-                                        fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M14.5 5C15 5 15.5 4.5 15.5 4C15.5 3.5 15 3 14.5 3H5.5C4.4 3 3.5 3.9 3.5 5V14C3.5 14.5 4 15 4.5 15C5 15 5.5 14.5 5.5 14V5H14.5ZM9.5 21H18.5C19.6 21 20.5 20.1 20.5 19V9C20.5 7.9 19.6 7 18.5 7H9.5C8.4 7 7.5 7.9 7.5 9V19C7.5 20.1 8.4 21 9.5 21ZM9.5 19V9H18.5V19H9.5Z"></path></svg></span></code>
-                                </span>
-            </button>
+            {{ feature_step_macros.copy_button('upsun url --primary') }}
         </p>
     </li>
 </ol>

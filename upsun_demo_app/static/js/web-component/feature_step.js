@@ -116,5 +116,44 @@ class FeatureStep extends HTMLElement {
     }
 }
 
+function copyToClipboard(button) {
+    const textElement = button.querySelector('.copy-text');
+    const text = textElement.innerText;
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+            showCopiedMessage(button);
+        }).catch(err => {
+            console.error('Could not copy text: ', err);
+            alert('Failed to copy text, please try manually.');
+        });
+    } else {
+        // Fallback for browsers that do not support Clipboard API
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            showCopiedMessage(button);
+        } catch (err) {
+            console.error('Fallback: Oops, unable to copy', err);
+            alert('Failed to copy text, please try manually.');
+        }
+        document.body.removeChild(textarea);
+    }
+}
+
+function showCopiedMessage(button) {
+    const copyMessage = button.querySelector('.copied-indicator');
+    copyMessage.classList.remove('opacity-0');
+    copyMessage.classList.add('opacity-100');
+
+    setTimeout(() => {
+        copyMessage.classList.remove('opacity-100');
+        copyMessage.classList.add('opacity-0');
+    }, 2500);
+}
+
 // Register the custom element
-customElements.define('feature-step', FeatureStep);
+    customElements.define('feature-step', FeatureStep);

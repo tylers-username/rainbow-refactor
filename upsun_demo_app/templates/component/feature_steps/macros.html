@@ -12,3 +12,19 @@
         </feature-content>
     </feature-step>
 {% endmacro %}
+
+{% macro copy_button(copy_text, block=False) %}
+    <button class="pl-1 inline-block w-full copy-button" onclick="copyToClipboard(this)">
+        <span class="mb-2 mt-2 code-block group/copy-box">
+            <code class="px-2 py-1.5 w-full flex flex-row">
+                <span class="copy-text w-full text-left {%  if block==False %}whitespace-nowrap overflow-auto {% else %} whitespace-pre-wrap {% endif %}">{{ copy_text }}</span>
+                <span class="text-white flex flex-row items-center">
+                    <span class="copied-indicator h-full transition-opacity duration-300 opacity-0 copy-message">
+                        Copied!
+                    </span>
+                    {% include 'component/imagery/copy.svg' %}
+                </span>
+            </code>
+        </span>
+    </button>
+{% endmacro %}

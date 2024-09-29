@@ -19,7 +19,7 @@ def index():
     """Default route of app"""
     upsun_info = {
         "environment_type": get_platform_environment(),
-        "has_redis_service": has_redis_service(),
+        "has_redis_service": True #has_redis_service(),
     }
     return render_template("index.html", upsun_info=upsun_info)
 
