@@ -35,9 +35,9 @@ applications:
 ## Step 3: Add a service. Uncomment this section.
 #######################################################################################################################
 #        relationships:
-#             redis_session:
-#                 service: "redis_service"
-#                 endpoint: "redis"
+#            redis_session:
+#                service: "redis_service"
+#                endpoint: "redis"
 #
 #services:
 #    redis_service:
