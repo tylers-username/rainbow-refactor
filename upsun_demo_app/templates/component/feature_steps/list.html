@@ -1,7 +1,8 @@
 {% import 'component/feature_steps/macros.html' as feature_step_macros %}
 
 <div class="pt-8 flex flex-col gap-2">
-    {{ feature_step_macros.feature_step(
+    {% if upsun_info.environment_type == 'production' or upsun_info.environment_type == 'staging' or upsun_info.environment_type == 'development' %}
+        {{ feature_step_macros.feature_step(
             '1. Deploy to Upsun',
             completed=true,
             disabled=true,
@@ -9,34 +10,47 @@
             content_component_path='component/feature_steps/content/1_deploy_to_upsun.html'
         ) }}
 
-    {{ feature_step_macros.feature_step(
+        {{ feature_step_macros.feature_step(
             '2. Create your first preview environment',
-            current_step=true,
+            current_step=(upsun_info.environment_type == 'production' and upsun_info.has_redis_service == False),
+            completed=(upsun_info.environment_type != 'production' or upsun_info.has_redis_service == True),
+            disabled=(upsun_info.environment_type == 'production' and upsun_info.has_redis_service == False) == False,
             image_component_path='component/imagery/branch.svg',
             content_component_path='component/feature_steps/content/2_create_first_preview_environment.html'
         ) }}
 
-    {{ feature_step_macros.feature_step(
+        {{ feature_step_macros.feature_step(
             '3. Add Redis to staging',
-            completed=false,
-            disabled=true,
+            current_step=(upsun_info.environment_type != 'production' and upsun_info.has_redis_service == False),
+            completed=(upsun_info.has_redis_service == True),
+            disabled=(upsun_info.environment_type != 'production' and upsun_info.has_redis_service == False) == False,
             image_component_path='component/imagery/redis.svg',
             content_component_path='component/feature_steps/content/2_create_first_preview_environment.html'
         ) }}
 
-    {{ feature_step_macros.feature_step(
+        {{ feature_step_macros.feature_step(
             '4. Merge changes into production &amp; scale up',
-            completed=false,
-            disabled=true,
+            current_step=(upsun_info.environment_type != 'production' and upsun_info.has_redis_service == True),
+            completed=(upsun_info.environment_type == 'production' and upsun_info.has_redis_service == True),
+            disabled=(upsun_info.environment_type != 'production' and upsun_info.has_redis_service == True) == False,
             image_component_path='component/imagery/merge.svg',
             content_component_path='component/feature_steps/content/4_merge_to_production.html'
         ) }}
 
-    {{ feature_step_macros.feature_step(
+        {{ feature_step_macros.feature_step(
             '5. You did it!',
-            completed=false,
-            disabled=true,
+            current_step=(upsun_info.environment_type == 'production' and upsun_info.has_redis_service == True),
+            completed=(upsun_info.environment_type != 'production' or upsun_info.has_redis_service != True),
+            disabled=(upsun_info.environment_type == 'production' and upsun_info.has_redis_service == True) == False,
             image_component_path='component/imagery/success.svg',
             content_component_path='component/feature_steps/content/5_done.html'
         ) }}
+    {% else %}
+        {{ feature_step_macros.feature_step(
+            'Nice, your project is running locally!',
+            current_step=true,
+            image_component_path='component/imagery/success.svg',
+            content_component_path='component/feature_steps/content/running_locally.html'
+        ) }}
+    {% endif %}
 </div>

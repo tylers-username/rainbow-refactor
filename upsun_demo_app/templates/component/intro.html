@@ -1,16 +1,37 @@
 <div class="aside-title flex flex-row gap-4 items-center mb-2">
-  {% include 'component/imagery/production_indicator.svg' %}
-  <h1 data-testid="title" class="text-xl">
-    Production
-  </h1></div>
+    {% include 'component/imagery/production_indicator.svg' %}
+    <h1 data-testid="title" class="text-xl">
+        {{ upsun_info.environment_type | capitalize }}
+    </h1></div>
 <div data-testid="production-intro" class="rounded-lg mt-4 p-4 bg-upsun-black-900">
-  <p class="text-sm leading-6 text-lg mb-2">
-    Congrats! You’ve deployed the Upsun Demo Guide project to a production environment 🎉
-  </p>
-  <p class="text-sm leading-6">
-    This app is the React frontend of your demo project’s production environment,
-    which is associated with the default branch of the repository: <code class="px-2 py-1">main</code>. With
-    it now deployed, we can add features, services, and runtimes in preview environments - which are
-    byte-for-byte copies of production.
-  </p>
+    {% if upsun_info.environment_type == 'production' %}
+        <p class="text-sm leading-6 text-lg mb-2">
+            Congrats! You’ve deployed the Upsun Demo Guide project to a production environment 🎉
+        </p>
+        <p class="text-sm leading-6">
+            This app is the React frontend of your demo project’s production environment,
+            which is associated with the default branch of the repository: <code class="px-2 py-1">main</code>. With
+            it now deployed, we can add features, services, and runtimes in preview environments - which are
+            byte-for-byte copies of production.
+        </p>
+    {% elif upsun_info.environment_type == 'staging' or upsun_info.environment_type == 'development' %}
+        <p class="text-sm leading-6 text-lg mb-2">
+            Congrats! You’ve created your {{ upsun_info.environment_type | lower }} environment 🎉
+        </p>
+        <p class="text-sm leading-6">This space represents your byte-for-byte copy of production. You can use
+            staging and development environments to preview and share changes prior to pushing them to
+            production.</p>
+        <p class="text-sm leading-6">This app uses the Upsun environment variable <code class="px-2 py-1">$PLATFORM_ENVIRONMENT_TYPE="{{ upsun_info.environment_type}}"</code>
+            to modify the content of this page.</p>
+        <p class="text-sm leading-6">Return to the steps below to continue adding your Redis service.</p>
+    {% else %}
+        <p class="text-sm leading-6 text-lg mb-2">
+            Nice! It looks like you're running the demo app on your local machine. 🎉
+        </p>
+        <p class="text-sm leading-6"> If you're hoping to contribute to this open source project, try setting
+            <code class="px-2 py-1">PLATFORM_ENVIRONMENT_TYPE="staging"</code> or
+            <code class="px-2 py-1">PLATFORM_ENVIRONMENT_TYPE="production"</code>
+            in your
+            <code class="px-2 py-1">.env</code> and then restart your server.</p>
+    {% endif %}
 </div>

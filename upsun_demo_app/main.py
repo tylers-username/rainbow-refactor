@@ -90,6 +90,11 @@ def dev_server(app, port):
     server.watch('**/*.css')
     server.watch('**/*.js')
 
+    def warn_env_change():
+        print("\n\n.env has been updated. You will need to manually restart the server\n\n")
+
+    server.watch('.env', warn_env_change)
+
     # Watch Python files to restart the server
     server.watch('**/*.py')
 

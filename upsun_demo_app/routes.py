@@ -17,26 +17,11 @@ API_PREFIX = "/api/v1"
 @bp.route("/")
 def index():
     """Default route of app"""
-    user = {"username": "John Doe"}
-    return render_template("index.html", user=user)
-
-
-@bp.route(f"{API_PREFIX}/environment")
-def environment():
-    """
-    Returns the environment type and sessions storage type as json
-    """
-    return jsonify(
-        type=get_platform_environment(), session_storage=get_session_storage_type()
-    )
-
-
-@bp.route("/api/")
-def home():
-    """
-    Returns a welcome message for the home route.
-    """
-    return "Hello from the Python backend!"
+    upsun_info = {
+        "environment_type": get_platform_environment(),
+        "has_redis_service": has_redis_service(),
+    }
+    return render_template("index.html", upsun_info=upsun_info)
 
 
 def get_session_storage_type():
@@ -71,3 +56,10 @@ def get_platform_environment():
     If the variable is not set, it returns "local".
     """
     return os.environ.get("PLATFORM_ENVIRONMENT_TYPE", "local")
+
+
+def has_redis_service():
+    """
+    Returns true or false depending on if the expected redis service is available
+    """
+    return get_session_storage_type() == "redis"
