@@ -2,3 +2,4 @@ env
 .env
 __pycache__/
 tailwindcss
+upsun_demo_app/static/css/main.css
