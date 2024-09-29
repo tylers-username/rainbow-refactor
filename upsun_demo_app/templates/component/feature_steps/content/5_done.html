@@ -1,24 +1,36 @@
 {% import 'component/feature_steps/macros.html' as feature_step_macros %}
-<p class="mb-2 mt-2 font-bold">🎉 Kudos! You've aced the Upsun Demo!</p>
-<p class="mb-2">You've just experienced the power of Upsun's Git-based workflow to stage and
-    deploy Redis seamlessly.</p>
-<p class="mb-2 mt-5">
-    <span>You've used the Upsun CLI to merge a new service into production, and to match the resources you worked with in staging to that environment. From here, you can <strong>scale those resources</strong> to whatever you need. For example, at this moment your production Redis service has 0.5 CPU. You can scale down the amount of resources on the production Redis service container with the following command:</span>
-    {{ feature_step_macros.copy_button("upsun resources:set \\\n\t--size redis_service:0.1 \\\n\t--disk upsun-demo:0 \\\n\t-e main",
-                block=True
-            ) }}
+
+<p class="mb-2 mt-2 font-bold">
+    🎉 Kudos! You've aced the Upsun Demo!
 </p>
-<p class="mb-2 mt-5"><span>Delete this project when ready using:</span>
-    {{ feature_step_macros.copy_button("upsun project:delete") }}
+
+<p class="mb-2">
+    You've just experienced the power of Upsun's Git-based workflow to stage, deploy, and scale a web app seamlessly.
 </p>
-<h4 class="mt-5 text-lg font-semibold">What's next?</h4>
+
+<h4 class="mt-5 text-lg font-semibold">
+    What's next?
+</h4>
+
 <ul class="list-disc list-outside ml-8 mt-2">
-    <li><a href="https://docs.upsun.com/get-started/here.html" target="_blank" rel="noreferrer">Migrate
-        your application</a></li>
-    <li class="mt-2">Share your thoughts and connect with us on Discord.</li>
-    <li class="mt-2">Explore Upsun's <a
-            href="https://docs.upsun.com/manage-resources.html#horizontal-scaling">horizontal
-        scalability features</a>.
+    <li>
+        Delete this project using the Upsun CLI
+        <div class="pt-1 pb-2">{{ feature_step_macros.copy_button("upsun project:delete") }}</div>
+    </li>
+    <li>
+        <a href="https://docs.upsun.com/get-started/here.html" target="_blank" rel="noreferrer">
+            Bring your own application
+        </a>
+    </li>
+    <li class="mt-2">
+        Share your thoughts and <a href="https://docs.upsun.com/#join-the-community">connect with us on Discord</a>.
+    </li>
+    <li class="mt-2">
+        Explore Upsun's <a href="https://docs.upsun.com/manage-resources.html#horizontal-scaling">horizontal scalability
+        features</a>.
     </li>
 </ul>
-<p class="mb-2 mt-4 font-semibold">Welcome to the Upsun Community!</p>
+
+<p class="mb-2 mt-4 font-semibold">
+    Welcome to the Upsun Community!
+</p>
