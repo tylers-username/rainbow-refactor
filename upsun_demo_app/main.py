@@ -37,17 +37,6 @@ def create_app():
     # Apply CORS
     CORS(flask_app)
 
-    # Optionally configure Redis for Sessions
-    # if 'implement redis but consider how to handle in local dev environment':
-    #     flask_app.config['SESSION_TYPE'] = 'redis'  # Session storage type
-    #     flask_app.config['SESSION_PERMANENT'] = False  # Make the sessions non-permanent
-    #     flask_app.config['SESSION_USE_SIGNER'] = True  # Securely sign the session cookie
-    #     flask_app.config['SESSION_KEY_PREFIX'] = 'session:'  # Prefix for storing session data in Redis
-    #     flask_app.config['SESSION_REDIS'] = redis.StrictRedis(host='localhost', port=6379, db=0)
-    #
-    #     sess = Session()
-    #     sess.init_app(flask_app)
-
     # Register blueprints or routes
     flask_app.register_blueprint(routes.bp)
 
@@ -73,7 +62,7 @@ def create_app():
     return flask_app
 
 
-def dev_server(app, port):
+def dev_server(port):
     """
     Start the development server with Livereload.
 
@@ -81,7 +70,7 @@ def dev_server(app, port):
         app (Flask): The Flask application instance.
         port (int): The port number to run the server on.
     """
-    from livereload import Server
+    from livereload import Server  # pylint: disable=C0415
 
     server = Server(app.wsgi_app)
 
@@ -102,7 +91,7 @@ def dev_server(app, port):
     server.serve(host='0.0.0.0', port=port, debug=True, open_url_delay=1)
 
 
-def run_production(app, port):
+def run_production(port):
     """
     Placeholder for running the production server.
 
@@ -112,9 +101,11 @@ def run_production(app, port):
         app (Flask): The Flask application instance.
         port (int): The port number to run the server on.
     """
-    print("Running in production mode. Set FLASK_ENV=local or use Gunicorn to serve the production app.")
-    print(f"Example Gunicorn command: \n\tpoetry run gunicorn -w 4 -b 0.0.0.0:{port} upsun_demo_app.main:app")
-    print(f"\tOr poetry run app-serve")
+    print("Running in production mode."
+          "Set FLASK_ENV=local or use Gunicorn to serve the production app.")
+    print("Example Gunicorn command: "
+          f"\n\tpoetry run gunicorn -w 4 -b 0.0.0.0:{port} upsun_demo_app.main:app")
+    print("\tOr poetry run app-serve")
     # Example:
     # gunicorn -w 4 -b 0.0.0.0:8000 upsun_demo_app.main:app
 
@@ -135,17 +126,17 @@ def main():
     flask_env = os.getenv("FLASK_ENV", "production")
     enable_debug = flask_env != "production"
     try:
-        web_port = int(os.getenv("PORT", 8000))
+        web_port = int(os.getenv("PORT", "8000"))
     except ValueError:
         print("Invalid PORT environment variable. Using default port 8000.")
         web_port = 8000
 
     if enable_debug:
         # Start development server with Livereload
-        dev_server(app, web_port)
+        dev_server(web_port)
     else:
         # Start production server (suggest using Gunicorn)
-        run_production(app, web_port)
+        run_production(web_port)
 
 
 

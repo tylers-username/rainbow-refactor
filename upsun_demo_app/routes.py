@@ -5,7 +5,7 @@ This module sets defines the routes for your Flask application
 import os
 import base64
 import json
-from flask import Blueprint, jsonify, render_template
+from flask import Blueprint, render_template
 
 bp = Blueprint("routes", __name__)
 
