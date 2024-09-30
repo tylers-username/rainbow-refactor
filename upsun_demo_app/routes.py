@@ -11,8 +11,6 @@ bp = Blueprint("routes", __name__)
 
 SERVICE_RELATIONSHIP = "redis_session"
 
-API_PREFIX = "/api/v1"
-
 
 @bp.route("/")
 def index():
