@@ -102,122 +102,59 @@ NPM is required.
 
 1. `git clone git@github.com:platformsh/demo-project.git`
 1. `cd demo-project`
-1. `npm install`
-1. `npm run start`
-
-These commands will set up everything you need to get started, serving:
-
-- The `backend` Python app from `localhost:8000`
-- The `frontend` React app from `localhost:3000`
-
-> [!IMPORTANT]
-> If at any time you want to start over, run `npm run clean`.
-> This will delete everything you've done in the previous steps.
+1. Install required packages: `poetry install`
+1. Make TailwindCSS CLI available: `poetry run download-tailwind`
+1. Run TailwindCSS file watcher: `poetry run dev-css-watch`
+1. Run livereload server: `poetry run app-serve-livereload` 
 
 ### Testing individual steps of the demo
 
-When running locally, `npm run start` mimicks the backend connection in `frontend/src/utility/api.ts`.
-That is, if you're looking to update steps (defined in `frontend/src/App.tsx`) or commands (defined in `frontend/src/commands.json`)
-and view how they will appear to the user, which state is presented is defined in this file. 
+When running locally, you can use the `.env` (copied from `.env.sample`) to update the variables used to detect which 
+steps have been completed. `PLATFORM_ENVIRONMENT_TYPE` will switch between `production` and `staging`.
 
-In the `fetchEnvironment` method, you will see an `override_state` variable
+For now, to emulate Redis being configured in Upsun there are two options:
 
-```jsx
-// frontend/src/utility/api.ts
-
-let data;
-
-// If updating the design locally, this variable can help you quickly switch between steps.
-//  Note: this value MUST be returned to "default" when pushed to the project repo, or else tests will fail.
-// let override_state = "default";
-let override_state = "branch"
-// let override_state = "redis"
-// let override_state = "merge-production"
-// let override_state = "scale"
-// let override_state = "complete"
-```
-
-Changing which state is commented out in this block for the `override_state` variable will allow you to quickly switch between states.
+1. Recreate the `PLATFORM_RELATIONSHIPS` variable.
+2. Or, update `upsun_demo_app/routes.py:22` from `"has_redis_service": has_redis_service(),` to `"has_redis_service": True,`
 
 > [!IMPORTANT]
-> This switch is included to make design/command changes easy to visualize quickly.
-> It is **required** that you reset this variable to `let override_state = "default"` before pushing to the repository.
-> If you do not, tests will fail and the PR cannot be accepted.
->
-> You can usually tell if forgetting to reset this variable is the reason for failure from the following error message during a test run:
-> ```
->  FAIL  src/utility/api.test.tsx
->  ● fetchEnvironment › fetches environment successfully
-> ```
+> You must manually restart the local server if `.env`, `main.py` or `routes.py` are updated.
 
 ### Running tests
 
-This project goes through a number of tests on GitHub that must pass before it can be merged.
-These tests are of two types:
-
-1. Code tests
-1. Demo path tests
+[TBD]
 
 #### Code tests
 
-> [!NOTE]
-> You can run all the tests desribed below with the command:
-> ```
-> ./utils/tests/all.sh
-> ```
+[TBD]
 
 Before pushing your changes to the repository (or if your PR is failing), please run the following steps locally:
 
 1. Install project dependencies
 
     ```bash
-    npm install
+    poetry install
     ```
 
-1. Run backend Python app tests (check for vulnerabilities)
+1. Run app tests (check for vulnerabilities)
 
-    ```bash
-    npm run test:backend
-    ```
-
-    > [!NOTE]
-    > This test will fail on GitHub if **any** vulnerabilities are found. 
-
-1. Run frontend React tests.
-
-    ```bash
-    npm run test:frontend -- --watchAll
-    ```
-
-    > [!NOTE]
-    > This test will fail on GitHub if **any** React tests fail. 
-
-    Tips:
-
-    - [Make sure that you have returned `override_step` to its previous value](#testing-individual-steps-of-the-demo)
-    - Changes to steps in the demo can fundamentally change test expectations. Update tests as you work.
+    [TBD]
 
 1. Audit frontend dependencies.
 
     ```bash
-    cd frontend && npm audit
+    poetry run app_audit
     ```
-
-    > [!NOTE]
-    > This test will pass on GitHub, so long as there are **no High or Critical vulnerabilities** found.
 
 1. Prettier
 
     ```bash
-    npm run prettier:backend
-    npm run prettier:frontend
-    npm run lint:frontend
-    npm run lint:backend
+    poetry run app_prettier
+    poetry run app_lint
     ```
 
-    If, for example, you run into the error `[warn] Code style issues found in 3 files. Run Prettier to fix.` for the `frontend`, run `cd frontend && npm run pretty:fix` to fix.
-
-    The workflow on GitHub will fail if this error occurs, so please fix locally when contributing.
+    `app_prettier` triggers `poetry run black . --check` which will only check for issues. If you wish to apply 
+    recommendations you may use `poetry run black .`
 
 #### Demo path tests
 
