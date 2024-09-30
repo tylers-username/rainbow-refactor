@@ -9,3 +9,10 @@ def cssWatch():
         "poetry run tailwindcss -i ./upsun_demo_app/static/css/tailwind.css -o ./upsun_demo_app/static/css/main.css --watch",
         "Watching for changes",
     )
+
+def audit():
+    "Audit app"
+    run(
+        "poetry run pip-audit",
+        "Auditing packages",
+    )
