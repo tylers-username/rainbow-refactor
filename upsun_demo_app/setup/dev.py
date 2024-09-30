@@ -16,3 +16,7 @@ def audit():
         "poetry run pip-audit",
         "Auditing packages",
     )
+    run(
+        "poetry run deptry .",
+        "Scanning project with deptry",
+    )
