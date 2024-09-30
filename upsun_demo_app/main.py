@@ -15,6 +15,7 @@ from upsun_demo_app import routes
 
 # from flask_session import Session
 
+
 def create_app():
     """
     Create and configure an instance of the Flask application.
@@ -31,8 +32,8 @@ def create_app():
 
     # Configure Environment
     flask_env = os.getenv("FLASK_ENV", "production")
-    flask_app.config['ENV'] = flask_env
-    flask_app.config['DEBUG'] = flask_env != "production"
+    flask_app.config["ENV"] = flask_env
+    flask_app.config["DEBUG"] = flask_env != "production"
 
     # Apply CORS
     CORS(flask_app)
@@ -43,21 +44,20 @@ def create_app():
     # Context Processor to inject 'debug' into templates
     @flask_app.context_processor
     def inject_debug():
-        return {'debug': flask_app.debug}
+        return {"debug": flask_app.debug}
 
     def versioned_url_for(endpoint, **values):
-        if endpoint == 'static':
-            filename = values.get('filename', None)
+        if endpoint == "static":
+            filename = values.get("filename", None)
             if filename:
-                file_path = os.path.join(flask_app.root_path, 'static', filename)
+                file_path = os.path.join(flask_app.root_path, "static", filename)
                 if os.path.isfile(file_path):
                     # Use the file's last modification time as the version
-                    values['v'] = int(os.stat(file_path).st_mtime)
+                    values["v"] = int(os.stat(file_path).st_mtime)
         return url_for(endpoint, **values)
 
     # Register the helper function globally
-    flask_app.jinja_env.globals['versioned_url_for'] = versioned_url_for
-
+    flask_app.jinja_env.globals["versioned_url_for"] = versioned_url_for
 
     return flask_app
 
@@ -75,20 +75,22 @@ def dev_server(port):
     server = Server(app.wsgi_app)
 
     # Watch templates and static files
-    server.watch('**/*.html')
-    server.watch('**/*.css')
-    server.watch('**/*.js')
+    server.watch("**/*.html")
+    server.watch("**/*.css")
+    server.watch("**/*.js")
 
     def warn_env_change():
-        print("\n\n.env has been updated. You will need to manually restart the server\n\n")
+        print(
+            "\n\n.env has been updated. You will need to manually restart the server\n\n"
+        )
 
-    server.watch('.env', warn_env_change)
+    server.watch(".env", warn_env_change)
 
     # Watch Python files to restart the server
-    server.watch('**/*.py')
+    server.watch("**/*.py")
 
     print(f"Starting development server with LiveReload on port {port}")
-    server.serve(host='0.0.0.0', port=port, debug=True, open_url_delay=1)
+    server.serve(host="0.0.0.0", port=port, debug=True, open_url_delay=1)
 
 
 def run_production(port):
@@ -101,10 +103,14 @@ def run_production(port):
         app (Flask): The Flask application instance.
         port (int): The port number to run the server on.
     """
-    print("Running in production mode."
-          "Set FLASK_ENV=local or use Gunicorn to serve the production app.")
-    print("Example Gunicorn command: "
-          f"\n\tpoetry run gunicorn -w 4 -b 0.0.0.0:{port} upsun_demo_app.main:app")
+    print(
+        "Running in production mode."
+        "Set FLASK_ENV=local or use Gunicorn to serve the production app."
+    )
+    print(
+        "Example Gunicorn command: "
+        f"\n\tpoetry run gunicorn -w 4 -b 0.0.0.0:{port} upsun_demo_app.main:app"
+    )
     print("\tOr poetry run app-serve")
     # Example:
     # gunicorn -w 4 -b 0.0.0.0:8000 upsun_demo_app.main:app
@@ -112,6 +118,7 @@ def run_production(port):
 
 # Create the Flask app
 app = create_app()
+
 
 def main():
     """
@@ -137,7 +144,6 @@ def main():
     else:
         # Start production server (suggest using Gunicorn)
         run_production(web_port)
-
 
 
 # Ensure the script runs only when executed directly
